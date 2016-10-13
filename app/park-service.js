@@ -26,14 +26,16 @@ function extractDataFromCsv(generalParkData){
                     dataLocation.set(data[0], data[14]);
                 }).on("end", function(){
                      var parkings = new Array();
-                     var filteredLocationData = new Map();
+                     var filteredLocationData = new Array();
                      
                      parkings = generalParkData.body;
                      parkings.forEach((element) => {
                          if(dataLocation.get(element.IdObj) && element.Grp_nom){
                             var parkingObject = JSON.parse('{"location": '+ dataLocation.get(element.IdObj) + ', "name": "'+ element.Grp_nom +'"}');
                          }
-                         filteredLocationData.set(element.IdObj, parkingObject); 
+                         filteredLocationData.push(parkingObject);
+                         //TODO utiliser des maps
+                         //filteredLocationData.set(element.IdObj, parkingObject); 
                      })
                      resolve(filteredLocationData);
                 })
