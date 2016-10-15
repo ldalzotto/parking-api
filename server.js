@@ -8,13 +8,12 @@ var express    = require('./node_modules/express/index.js');        // call expr
 var app        = express();                 // define our app using express
 var bodyParser = require('./node_modules/body-parser/index.js');
 var parkService= require('./app/park-service.js');
-var stringify = require('./node_modules/stringify-json/index.js');
+var stringify = require('stringify-json');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 var port = process.env.PORT || 8080;        // set our port
 
